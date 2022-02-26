@@ -1,6 +1,7 @@
 package programers.stack_queue;
 
 import java.util.*;
+//시간 초과 남... ㅅㅂ 무슨 알고리즘이지
 
 public class Stock {
     public static int[] solution(int[] prices) {
