@@ -52,19 +52,24 @@ public class Trip {
                 now_tmp.remove(0);
                 airports.put(now,now_tmp);
                 dfs(tmp);
-            }else{
+            }else if(now_tmp.size()>1){
                 now_tmp.remove(0);
                 now_tmp.add(tmp);
                 airports.put(now,now_tmp);
+            }else{
+                now_tmp.remove(0);
+                airports.put(now,now_tmp);
+                dfs(tmp);
             }
 //            System.out.println(airports);
         }
         return;
     }
     public static void main(String[] args){
-        String[][] tickets = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO"}};
+//        String[][] tickets = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO"}};
 //        String[][] tickets = {{"ICN", "JFK"},{"ICN","ATL"},{"SFO","ATL"},{"ATL","ICN"},{"ATL","SFO"}};
-
+        String[][] tickets = {{"ICN", "AOO"}, {"AOO", "BOO"}, {"BOO", "COO"}, {"COO", "DOO"}, {"DOO", "EOO"}, {"EOO", "DOO"}, {"DOO", "COO"}, {"COO", "BOO"}, {"BOO", "AOO"}};
+//        {"ICN", "AOO", "BOO", "COO", "DOO", "EOO", "DOO", "COO", "BOO", "AOO"};
         String[] ans = solution(tickets);
         System.out.println("ans");
         for(String a : ans){
