@@ -24,6 +24,7 @@ public class BoatTimeLimit {
         int[] people = {70, 50, 80, 50};
         int limit = 100;
         int ans = solution(people,limit);
+
         System.out.println(ans);
     }
 }

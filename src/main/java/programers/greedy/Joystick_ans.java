@@ -1,5 +1,7 @@
 package programers.greedy;
 
+import java.util.HashMap;
+
 public class Joystick_ans {
     public int solution(String name) {
         int answer = 0;
