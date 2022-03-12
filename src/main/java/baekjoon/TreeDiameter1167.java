@@ -8,8 +8,7 @@ import java.util.*;
 public class TreeDiameter1167 {
     static HashMap<Integer, List<int[]>> tree = new HashMap<>();
     static int max = -Integer.MAX_VALUE;
-    static int maxDistance = -Integer.MAX_VALUE;
-    static int maxNode = -1;
+    public static int maxNode = -1;
     public static void dfs(HashMap<Integer,Boolean> is_visit_map, int now, int nowVal, int distance){
         List<int[]> nowToGo = tree.get(now);
         is_visit_map.put(now,true);
