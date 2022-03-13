@@ -30,11 +30,13 @@ public class TreeDiameter1967 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
+//        System.out.println(N);
         for(int i = 0 ; i < N; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
             int p = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
+//            System.out.println(p+ " " + v + " " + w);
             isVisitFirst.put(p,false);
             isVisitSecond.put(p,false);
             if(tree.containsKey(p)){
@@ -47,8 +49,17 @@ public class TreeDiameter1967 {
                 tree.put(p,now);
             }
         }
-        dfs(isVisitFirst, 1, 0, 0);
-        dfs(isVisitSecond, maxNode, 0, 0);
+        br.close();
+        System.out.println("dd???");
+        for(Integer a: tree.keySet()){
+            List<int[]> tmp = tree.get(a);
+            System.out.println(a);
+            for(int[] t : tmp){
+                System.out.println(t[0] + " " + t[1]);
+            }
+        }
+//        dfs(isVisitFirst, 1, 0, 0);
+//        dfs(isVisitSecond, maxNode, 0, 0);
         System.out.println(max);
     }
 }
