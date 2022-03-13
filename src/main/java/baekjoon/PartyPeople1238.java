@@ -8,19 +8,18 @@ import java.util.*;
 public class PartyPeople1238 {
     static HashMap<Integer, List<Node>> graph = new HashMap<>();
     static HashMap<Integer, Integer> result = new HashMap<>();
-    public static void dijkstra(int start, int destination, HashMap<Integer, Boolean> isVisit, HashMap<Integer,Integer> minRoot){
+    static HashMap<Integer, Integer> destinationMinRoot;
+    public static void dijkstra(int start, HashMap<Integer, Boolean> isVisit, HashMap<Integer,Integer> minRoot){
         PriorityQueue<Node> pq = new PriorityQueue<>();
         Node node = new Node(start, 0);
-        int now = start;
         pq.add(node);
         while(!pq.isEmpty()){
             Node cur = pq.poll();
             int to = cur.e;
-            int time = cur.cost;
-            if(isVisit.get(now)) continue;
+            if(isVisit.get(to)) continue;
             else{
                 isVisit.put(to,true);
-                List<Node> nextList = graph.get(now);
+                List<Node> nextList = graph.get(cur.e);
                 for(Node next : nextList){
                     if(minRoot.get(next.e) > minRoot.get(cur.e) + next.cost){
                         minRoot.put(next.e, minRoot.get(cur.e) + next.cost);
@@ -30,29 +29,30 @@ public class PartyPeople1238 {
             }
         }
     }
-    public static void solution(int N, int X){
+    public static int solution(int N, int X){
         for(int i = 1; i <= N; i++){
             HashMap<Integer, Boolean> isVisit = new HashMap<>();
             HashMap<Integer, Integer> minRoot = new HashMap<>();
             for(int j = 1; j <= N; j++){
                 isVisit.put(j,false);
                 minRoot.put(j, Integer.MAX_VALUE);
+                if(i == j){
+                    minRoot.put(j,0);
+                }
             }
-            dijkstra(i, X, isVisit, minRoot);
-            result.put(i, result.get(i)+minRoot.get(i));
+            dijkstra(i, isVisit, minRoot);
+            result.put(i, minRoot.get(X));
+            if(i == X){
+                destinationMinRoot = minRoot;
+            }
         }
+        int max = -Integer.MAX_VALUE;
         for(int i = 1; i <= N; i++){
-            HashMap<Integer, Boolean> isVisit = new HashMap<>();
-            HashMap<Integer, Integer> minRoot = new HashMap<>();
-            for(int j = 1; j <= N; j++){
-                isVisit.put(j,false);
-                minRoot.put(j, Integer.MAX_VALUE);
+            if(result.get(i) + destinationMinRoot.get(i) > max){
+                max = result.get(i) + destinationMinRoot.get(i);
             }
-            dijkstra(X, i, isVisit, minRoot);
-            result.put(i, result.get(i)+minRoot.get(i));
         }
-
-
+        return max;
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -62,7 +62,6 @@ public class PartyPeople1238 {
         int X = Integer.parseInt(st.nextToken());
 
         for(int i =1; i <= M; i++){
-            result.put(i,0);
             StringTokenizer stt = new StringTokenizer(br.readLine());
             int city = Integer.parseInt(stt.nextToken());
             int where = Integer.parseInt(stt.nextToken());
@@ -77,6 +76,7 @@ public class PartyPeople1238 {
                 graph.put(city,tmp);
             }
         }
+        System.out.println(solution(N,X));
     }
 
     public static class Node implements Comparable<Node>{
