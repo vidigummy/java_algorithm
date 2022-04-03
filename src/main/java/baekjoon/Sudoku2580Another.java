@@ -21,13 +21,11 @@ public class Sudoku2580Another {
     }
 
     public static void sudoku(int row, int col) {
-
         // 해당 행이 다 채워졌을 경우 다음 행의 첫 번째 열부터 시작
         if (col == 9) {
             sudoku(row + 1, 0);
             return;
         }
-
         // 행과 열이 모두 채워졌을 경우 출력 후 종료
         if (row == 9) {
             StringBuilder sb = new StringBuilder();
@@ -54,9 +52,7 @@ public class Sudoku2580Another {
             arr[row][col] = 0;
             return;
         }
-
         sudoku(row, col + 1);
-
     }
 
     public static boolean possibility(int row, int col, int value) {

@@ -15,8 +15,6 @@ public class TreeDiameter1167Dijkstra {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-
-
         // n , m , start input!
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
@@ -37,8 +35,6 @@ public class TreeDiameter1167Dijkstra {
             list.get(a).add(new Node(b,c));
 
         }
-
-
         dijkstra(start);
 
         for(int i=1;i<=n;i++){

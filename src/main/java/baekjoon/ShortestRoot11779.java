@@ -40,6 +40,7 @@ public class ShortestRoot11779 {
         for(int i= 1; i <= N; i++){
             List<int[]> tmp = new ArrayList<>();
             graph.put(i,tmp);
+
         }
         for(int i =0 ; i < M; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
