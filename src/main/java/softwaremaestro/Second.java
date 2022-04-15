@@ -1,3 +1,5 @@
+package softwaremaestro;
+
 import java.util.*;
 public class Second {
     static Integer[] memoryLimit;

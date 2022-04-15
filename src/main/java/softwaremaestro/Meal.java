@@ -1,3 +1,5 @@
+package softwaremaestro;
+
 import java.util.*;
 public class Meal{
         static int[] array;

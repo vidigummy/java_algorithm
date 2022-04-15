@@ -1,3 +1,5 @@
+package softwaremaestro;
+
 import java.util.*;
 public class Sambun {
     public static void main(String args[]) {
