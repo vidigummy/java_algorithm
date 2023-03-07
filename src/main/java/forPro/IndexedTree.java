@@ -7,12 +7,12 @@ class IndexedTree {
             int nodes[]; //노드(만들어 놓은 것)
 
             int nums[]; // 실제 값(입력값)
-            int height, leafCount; //높이, leafCount의 개수
+            int height, leafCount; //높이, leaf Node의 개수
             IndexTree(int[] nums){
                 this.nums = nums;
                 int len = nums.length-1;
                 this.height = 0;
-                while(len != 0){
+                while(len != 0){ // nums 개수에 따라 height 결정.(로그 대신 이 과정) =
                     len /= 2;
                     this.height++;
                 }
