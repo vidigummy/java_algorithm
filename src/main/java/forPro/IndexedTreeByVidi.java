@@ -52,6 +52,20 @@ public class IndexedTreeByVidi {
 
         }
 
+
+        public void updateFromBottom(int valueIndex, int newValue){
+            int nowIndex = (int)Math.pow(2, depth)+valueIndex-1;
+            int firstIndex = nowIndex;
+            while(nowIndex > 0){
+                System.out.println("nowIndex : "+nowIndex);
+                if(nowIndex == firstIndex){
+                    tree[nowIndex] = newValue;
+                }else{
+                    tree[nowIndex] = tree[nowIndex*2]+tree[nowIndex*2+1];
+                }
+                nowIndex = (nowIndex%2 == 1)? (nowIndex-1)/2 : nowIndex/2;
+            }
+        }
         public void printTree(){
             int nowDepth = 0;
             List<Integer> goTo = new ArrayList<>();
@@ -95,16 +109,18 @@ public class IndexedTreeByVidi {
         }
         IndexedTree it = new IndexedTree(numbers);
         int ls = it.leafSize;
+        it.printTree();
         for(int i = 0; i < M+K; i++){
             String[] inputLine = bf.readLine().split(" ");
             int inputMode = Integer.parseInt(inputLine[0]);
             int args_first = Integer.parseInt(inputLine[1]);
             int args_second = Integer.parseInt(inputLine[2]);
+
             if(inputMode == 2){
                 bw.write(Long.toString(it.sumPart(1,1,ls,args_first,args_second))+"\n");
             }else{
-                it.update(1,1,ls,args_first, args_second-numbers[args_first-1]);
-                numbers[args_first-1] = args_second;
+                it.updateFromBottom(args_first,args_second);
+                it.printTree();
             }
         }
         bw.flush();
