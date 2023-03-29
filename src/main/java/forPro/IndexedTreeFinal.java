@@ -15,7 +15,7 @@ public class IndexedTreeFinal {
             depth = (int)Math.ceil(Math.log(numbers.length)/Math.log(2));
             leafSize = (int)Math.pow(2,depth);
             tree = new long[leafSize*2];
-            makeTree(1,0,leafSize);
+            makeTree(1,0,leafSize-1);
         }
 
         public long makeTree(int index, int start, int end){
